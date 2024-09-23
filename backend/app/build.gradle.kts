@@ -22,8 +22,10 @@ dependencies {
     // Application dependencies.
     implementation("com.google.guava:guava:32.1.2-jre")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    // implementation("io.grpc:grpc-services:1.68.0-SNAPSHOT")
     implementation("io.grpc:grpc-netty-shaded:1.57.2")
     implementation("io.grpc:grpc-protobuf:1.57.2")
+    implementation("io.grpc:grpc-services:1.56.1")
     implementation("io.grpc:grpc-stub:1.57.2")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
     // If you want to generate Kotlin code, include the grpc-kotlin-stub

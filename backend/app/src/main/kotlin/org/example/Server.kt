@@ -2,6 +2,7 @@ package org.example
 
 import flappybird.*
 import io.grpc.ServerBuilder
+import io.grpc.protobuf.services.ProtoReflectionService
 import io.grpc.stub.StreamObserver
 import java.util.Timer
 import kotlin.concurrent.scheduleAtFixedRate
@@ -28,14 +29,18 @@ class FlappyBirdServiceImpl : FlappyBirdServiceGrpc.FlappyBirdServiceImplBase() 
     }
 
     override fun sendInput(request: PlayerInput, responseObserver: StreamObserver<Ack>) {
-        if (request.flap) {
-            // Update bird's position upwards
+        if (request.flap) {  // For Kotlin generated code
+            birdPositionY += 0.1f
+        }
+        // If using Java generated code, use request.getFlap()
+        if (request.getFlap()) {
             birdPositionY += 0.1f
         }
         val ack = Ack.newBuilder().setSuccess(true).build()
         responseObserver.onNext(ack)
         responseObserver.onCompleted()
     }
+    
 
     // Game loop to update game state
     init {
@@ -79,6 +84,7 @@ class FlappyBirdServiceImpl : FlappyBirdServiceGrpc.FlappyBirdServiceImplBase() 
 fun main() {
     val server = ServerBuilder.forPort(50051)
         .addService(FlappyBirdServiceImpl())
+        .addService(ProtoReflectionService.newInstance()) // Add this line to enable reflection
         .build()
         .start()
     println("Server started on port 50051")

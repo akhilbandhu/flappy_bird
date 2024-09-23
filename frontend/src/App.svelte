@@ -28,14 +28,15 @@
   }
 
   function sendInput(flap) {
-    const request = new PlayerInput();
-    request.setFlap(flap);
-    client.sendInput(request, {}, (err, response) => {
-      if (err) {
-        console.error(err);
-      }
-    });
-  }
+  const request = new PlayerInput();
+  request.setFlap(flap);
+  client.sendInput(request, {}, (err, response) => {
+    if (err) {
+      console.error(err);
+    }
+  });
+}
+
 
   function handleKeyDown(event) {
     if (event.code === 'Space') {
