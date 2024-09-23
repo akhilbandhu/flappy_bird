@@ -1,0 +1,35 @@
+# Node modules
+node_modules/
+
+# Build output
+public/build/
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Envoy binary
+envoy
+
+# Kotlin build files
+*.class
+*.jar
+build/
+.gradle/
+
+# Proto generated files
+*_pb.js
+*_pb.d.ts
+
+# Svelte generated files
+.svelte-kit/

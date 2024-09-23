@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "flappybird";
+
+package flappybird;
+
+service FlappyBirdService {
+  rpc GetGameState (Empty) returns (GameState);
+  rpc SendInput (PlayerInput) returns (Ack);
+
+  // New methods
+  rpc SubmitHighScore (HighScore) returns (Ack);
+  rpc GetHighScores (Empty) returns (HighScoreList);
+}
+
+message Empty {}
+
+message GameState {
+  float birdPositionY = 1;
+  repeated float pipePositionsX = 2;
+  repeated float pipePositionsY = 3;
+  int32 score = 4;
+  bool gameOver = 5;
+}
+
+message PlayerInput {
+  bool flap = 1;
+}
+
+message Ack {
+  bool success = 1;
+}
+
+message HighScore {
+  string player_name = 1;
+  int32 score = 2;
+}
+
+message HighScoreList {
+  repeated HighScore high_scores = 1;
+}
